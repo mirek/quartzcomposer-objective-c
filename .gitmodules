@@ -1,0 +1,6 @@
+[submodule "YAML.framework"]
+	path = YAML.framework
+	url = git@github.com:mirek/YAML.framework.git
+[submodule "YAML"]
+	path = YAML
+	url = git@github.com:mirek/YAML.framework.git
