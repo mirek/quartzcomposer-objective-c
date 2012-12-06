@@ -1,4 +1,5 @@
 .DS_Store
 build
-Objective-C.xcodeproj/*.mode1v3
-Objective-C.xcodeproj/*.pbxuser
+*.mode1v3
+*.pbxuser
+xcuserdata

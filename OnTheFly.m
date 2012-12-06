@@ -35,7 +35,7 @@
     //backgroundThread = [[NSThread alloc] initWithTarget: self selector: @selector(backgroundThreadExecuteWithOptions:) object: options];
     //[backgroundThread start];
     
-    sourceString = [NSString stringWithString: @"//"];
+    sourceString = @"//";
     lastProcessedSourceTimestamp = nil;
     
     meta = [[NSMutableDictionary alloc] init];
@@ -67,28 +67,27 @@
 
 // @options :sleep 
 - (void) backgroundThreadExecuteWithOptions: (NSDictionary *) options {
-  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-  
-  // Defaults when options = nil
-  NSTimeInterval sleep = 3.0;
-  
-  if (options) {
-    sleep = [(NSNumber *)[options objectForKey: @"sleep"] doubleValue];
-  }
-  
-  while (![self.backgroundThread isCancelled]) {
-  
-    NSLog(@" * comment is %@", [self mainCommentString]);
-//    NSLog(@" * source %@", [self sourceLastModificationDate]);
-//    NSLog(@" * dylib  %@", [self dynamicLibraryLastModificationDate]);
-//    
-    [self reloadDynamicLibraryIfNecessary];
-//    if ([self isSourceFileNewerThanDynamicLibraryFile]) {
-//      [self recompile];
-//    }
-    [NSThread sleepForTimeInterval: sleep];
-  }
-  [pool drain];
+    @autoreleasepool {
+        // Defaults when options = nil
+        NSTimeInterval sleep = 3.0;
+        
+        if (options) {
+            sleep = [(NSNumber *)[options objectForKey: @"sleep"] doubleValue];
+        }
+        
+        while (![self.backgroundThread isCancelled]) {
+            
+            NSLog(@" * comment is %@", [self mainCommentString]);
+            //    NSLog(@" * source %@", [self sourceLastModificationDate]);
+            //    NSLog(@" * dylib  %@", [self dynamicLibraryLastModificationDate]);
+            //
+            [self reloadDynamicLibraryIfNecessary];
+            //    if ([self isSourceFileNewerThanDynamicLibraryFile]) {
+            //      [self recompile];
+            //    }
+            [NSThread sleepForTimeInterval: sleep];
+        }
+    }
 }
 
 #pragma mark State management
@@ -524,41 +523,45 @@
   return recompileIfNecessary;
 }
 
+- (NSArray *) recompile {
+  self.lastProcessedSourceTimestamp = [self sourceLastModificationDate];
+  
+  NSArray *frameworks = [self frameworks];
+  if (frameworks == nil || [frameworks count] == 0) {
+    [self logError: @"No frameworks defined, bailing compilation"];
+    return nil;
+  }
+  
+  NSString *sourcePath_ = [self sourcePath];
+  if (sourcePath_ == nil) {
+    [self logError: @"Source path is nil, bailing compilation"];
+    return nil;
+  }
+  
+  NSString *dynamicLibraryPath_ = [self dynamicLibraryPath];
+  if (dynamicLibraryPath_ == nil) {
+    [self logError: @"Dynamic library path is nil, bailing compilation"];
+    return nil;
+  }
+  
+  NSString *frameworkNames = @"N/A";
+  if (frameworks)
+    frameworkNames = [frameworks componentsJoinedByString: @", "];
+  
+  [self logInfo: [NSString stringWithFormat: @"Will recompile from %@ to %@ with frameworks: %@", sourcePath_, dynamicLibraryPath_, frameworkNames]];
+  NSArray *compileOutputAndError = [self.class gccCompileWithOutputPath: dynamicLibraryPath_ inputPath: sourcePath_ frameworks: frameworks];
+  NSString *compileOutput = [compileOutputAndError objectAtIndex: 0];
+  NSString *compileError = [compileOutputAndError objectAtIndex: 1];
+  if (![compileOutput isEqualToString: @""])
+    [self logWarning: [NSString stringWithFormat: @"Compile warnings:\n%@", compileOutput]];
+  if (![compileError isEqualToString: @""])
+    [self logError: [NSString stringWithFormat: @"Compile errors:\n%@", compileError]];
+  return compileOutputAndError;  
+}
+
 - (NSArray *) recompileIfNecessary {
   if ([self needsRecompiling] && ![self didCompileForCurrentSource]) {
-    self.lastProcessedSourceTimestamp = [self sourceLastModificationDate];
-    
-    NSArray *frameworks = [self frameworks];
-    if (frameworks == nil || [frameworks count] == 0) {
-      [self logError: @"No frameworks defined, bailing compilation"];
-      return nil;
-    }
-    
-    NSString *sourcePath_ = [self sourcePath];
-    if (sourcePath_ == nil) {
-      [self logError: @"Source path is nil, bailing compilation"];
-      return nil;
-    }
-    
-    NSString *dynamicLibraryPath_ = [self dynamicLibraryPath];
-    if (dynamicLibraryPath_ == nil) {
-      [self logError: @"Dynamic library path is nil, bailing compilation"];
-      return nil;
-    }
-    
-    NSString *frameworkNames = @"N/A";
-    if (frameworks)
-      frameworkNames = [frameworks componentsJoinedByString: @", "];
-    
-    [self logInfo: [NSString stringWithFormat: @"Will recompile from %@ to %@ with frameworks: %@", sourcePath_, dynamicLibraryPath_, frameworkNames]];
-    NSArray *compileOutputAndError = [self.class gccCompileWithOutputPath: dynamicLibraryPath_ inputPath: sourcePath_ frameworks: frameworks];
-    NSString *compileOutput = [compileOutputAndError objectAtIndex: 0];
-    NSString *compileError = [compileOutputAndError objectAtIndex: 1];
-    if (![compileOutput isEqualToString: @""])
-      [self logWarning: [NSString stringWithFormat: @"Compile warnings:\n%@", compileOutput]];
-    if (![compileError isEqualToString: @""])
-      [self logError: [NSString stringWithFormat: @"Compile errors:\n%@", compileError]];
-    return compileOutputAndError;
+    return [self recompile];
   } else {
     return nil;
   }

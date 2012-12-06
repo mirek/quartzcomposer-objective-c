@@ -133,6 +133,7 @@ typedef enum {
 - (void) unloadDynamicLibrary;
 - (BOOL) isDynamicLibraryLoaded;
 - (NSString *) dynamicLibraryPath;
+- (NSArray *) recompile;
 - (NSArray *) recompileIfNecessary;
 - (NSArray *) recompileIfNecessaryAndReloadDynamicLibrary;
 - (BOOL) loadDynamicLibraryIfNotLoaded;

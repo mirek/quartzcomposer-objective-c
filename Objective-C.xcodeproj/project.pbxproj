@@ -52,6 +52,10 @@
 		EB68EA2C1251F8C600336500 /* scanner.c in Sources */ = {isa = PBXBuildFile; fileRef = EB68E9CC1251F83A00336500 /* scanner.c */; };
 		EB68EA2D1251F8C600336500 /* writer.c in Sources */ = {isa = PBXBuildFile; fileRef = EB68E9CD1251F83A00336500 /* writer.c */; };
 		EB68EA351251F8D700336500 /* YAMLSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = EB68EA131251F83A00336500 /* YAMLSerialization.m */; };
+		EB6DA9F01255F19100588686 /* status-error.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6DA9EC1255F19100588686 /* status-error.png */; };
+		EB6DA9F11255F19100588686 /* status-idle.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6DA9ED1255F19100588686 /* status-idle.png */; };
+		EB6DA9F21255F19100588686 /* status-ok.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6DA9EE1255F19100588686 /* status-ok.png */; };
+		EB6DA9F31255F19100588686 /* status-warning.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6DA9EF1255F19100588686 /* status-warning.png */; };
 		EBD2F445124935D200AF79DD /* Objective-C Consumer Example.qtz in Resources */ = {isa = PBXBuildFile; fileRef = EBD2F442124935D200AF79DD /* Objective-C Consumer Example.qtz */; };
 		EBD2F446124935D200AF79DD /* Objective-C Processor Example.qtz in Resources */ = {isa = PBXBuildFile; fileRef = EBD2F443124935D200AF79DD /* Objective-C Processor Example.qtz */; };
 		EBD2F447124935D200AF79DD /* Objective-C Provider Example.qtz in Resources */ = {isa = PBXBuildFile; fileRef = EBD2F444124935D200AF79DD /* Objective-C Provider Example.qtz */; };
@@ -74,28 +78,28 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = EB68EA0E1251F83A00336500 /* YAML.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216 /* YAML.framework */;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
 			remoteInfo = YAML;
 		};
 		EB68EA201251F83B00336500 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EB68EA0E1251F83A00336500 /* YAML.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB6C420E124D99BE00886AD1 /* test */;
+			remoteGlobalIDString = EB6C420E124D99BE00886AD1;
 			remoteInfo = test;
 		};
 		EB68EA221251F83B00336500 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EB68EA0E1251F83A00336500 /* YAML.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EBE745C1124F8C0D00618049 /* test */;
+			remoteGlobalIDString = EBE745C1124F8C0D00618049;
 			remoteInfo = "test (spec12examples)";
 		};
 		EB68EA241251F83B00336500 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EB68EA0E1251F83A00336500 /* YAML.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB2B5928124E2100001FFEEB /* events */;
+			remoteGlobalIDString = EB2B5928124E2100001FFEEB;
 			remoteInfo = events;
 		};
 /* End PBXContainerItemProxy section */
@@ -489,6 +493,10 @@
 		EB68EA111251F83A00336500 /* YAML_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAML_Prefix.pch; sourceTree = "<group>"; };
 		EB68EA121251F83A00336500 /* YAMLSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAMLSerialization.h; sourceTree = "<group>"; };
 		EB68EA131251F83A00336500 /* YAMLSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAMLSerialization.m; sourceTree = "<group>"; };
+		EB6DA9EC1255F19100588686 /* status-error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "status-error.png"; path = "Resources/status-error.png"; sourceTree = "<group>"; };
+		EB6DA9ED1255F19100588686 /* status-idle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "status-idle.png"; path = "Resources/status-idle.png"; sourceTree = "<group>"; };
+		EB6DA9EE1255F19100588686 /* status-ok.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "status-ok.png"; path = "Resources/status-ok.png"; sourceTree = "<group>"; };
+		EB6DA9EF1255F19100588686 /* status-warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "status-warning.png"; path = "Resources/status-warning.png"; sourceTree = "<group>"; };
 		EBD2F442124935D200AF79DD /* Objective-C Consumer Example.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; name = "Objective-C Consumer Example.qtz"; path = "Compositions/Objective-C Consumer Example.qtz"; sourceTree = "<group>"; };
 		EBD2F443124935D200AF79DD /* Objective-C Processor Example.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; name = "Objective-C Processor Example.qtz"; path = "Compositions/Objective-C Processor Example.qtz"; sourceTree = "<group>"; };
 		EBD2F444124935D200AF79DD /* Objective-C Provider Example.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; name = "Objective-C Provider Example.qtz"; path = "Compositions/Objective-C Provider Example.qtz"; sourceTree = "<group>"; };
@@ -559,6 +567,10 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EB6DA9EC1255F19100588686 /* status-error.png */,
+				EB6DA9ED1255F19100588686 /* status-idle.png */,
+				EB6DA9EE1255F19100588686 /* status-ok.png */,
+				EB6DA9EF1255F19100588686 /* status-warning.png */,
 				EBD2F45E1249386500AF79DD /* Default Snippets */,
 				EBD2F441124935BB00AF79DD /* Compositions */,
 				7238D5500DB6988600E9A42D /* Settings.xib */,
@@ -1291,6 +1303,9 @@
 /* Begin PBXProject section */
 		089C1669FE841209C02AAC07 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+			};
 			buildConfigurationList = 1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "Objective-C" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -1362,6 +1377,10 @@
 				EBD2F4621249388400AF79DD /* consumer.m in Resources */,
 				EBD2F4631249388400AF79DD /* processor.m in Resources */,
 				EBD2F4641249388400AF79DD /* provider.m in Resources */,
+				EB6DA9F01255F19100588686 /* status-error.png in Resources */,
+				EB6DA9F11255F19100588686 /* status-idle.png in Resources */,
+				EB6DA9F21255F19100588686 /* status-ok.png in Resources */,
+				EB6DA9F31255F19100588686 /* status-warning.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1484,10 +1503,10 @@
 		1DEB913B08733D840010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_OBJC_GC = supported;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1504,6 +1523,7 @@
 		1DEB913C08733D840010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_ENABLE_OBJC_GC = supported;
@@ -1526,7 +1546,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -1537,13 +1557,14 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
 		233E2D8A0A83C7AC005A62DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = "Build & Install";
 			};
 			name = Debug;
@@ -1551,6 +1572,7 @@
 		233E2D8B0A83C7AC005A62DF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = "Build & Install";
 			};
 			name = Release;
@@ -1565,7 +1587,6 @@
 					"\"$(SRCROOT)/../../../Library/Frameworks\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1577,7 +1598,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = test;
 			};
 			name = Debug;
@@ -1592,7 +1612,6 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../Library/Frameworks\"",
 				);
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -1603,7 +1622,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = test;
 				ZERO_LINK = NO;
 			};
@@ -1613,9 +1631,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1628,7 +1646,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = SettingsTest;
 			};
 			name = Debug;
@@ -1637,9 +1654,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -1651,7 +1668,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = SettingsTest;
 				ZERO_LINK = NO;
 			};

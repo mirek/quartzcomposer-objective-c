@@ -29,6 +29,37 @@
 @synthesize bundleData;
 @synthesize onTheFlyInputs;
 @synthesize onTheFlyOutputs;
+@synthesize status;
+
+#pragma mark Executable architecture
+
++ (NSInteger) executableArchitecture {
+  return [[NSRunningApplication currentApplication] executableArchitecture];
+}
+
++ (NSString *) executableArchitectureString {
+  switch ([self executableArchitecture]) {
+    case NSBundleExecutableArchitectureI386:
+      return @"i386";
+      break;
+      
+    case NSBundleExecutableArchitectureX86_64:
+      return @"x86_64";
+      break;
+      
+    case NSBundleExecutableArchitecturePPC:
+      return @"ppc";
+      break;
+      
+    case NSBundleExecutableArchitecturePPC64:
+      return @"ppc64";
+      break;
+      
+    default:
+      return nil;
+      break;
+  }
+}
 
 //- (id) objectForKey: (NSString *) key {
 //  NSLog(@"objectForKey: %@", key);
@@ -135,14 +166,15 @@
 //  }
 //}
 
-- (IBAction) recompileIfNecessaryAndReloadDynamicLibrary {
-  // Update source
+- (void) recompileIfNecessaryAndReloadDynamicLibrary {
+//  self.status = kObjectiveCPlugInStatusIdle;
   [self.onTheFly loadSourceFromFile];
-  //self.source = [onTheFly sourceString];
   [self setValue: [onTheFly sourceString] forKey: @"source"];
-  [self.onTheFly recompileIfNecessaryAndReloadDynamicLibrary];
-  
-  NSLog(@" log is %@", [self.onTheFly log]);
+//  [self.onTheFly reloadDynamicLibrary];
+//  if ([self.onTheFly canExecute])
+//    self.status = kObjectiveCPlugInStatusOk;
+//  else
+//    self.status = kObjectiveCPlugInStatusError;
 }
 
 - (void) updatePorts {
@@ -208,6 +240,8 @@
 - (void) setValue: (id) value forKey: (NSString *) key {
   if ([key isEqualToString: @"source"]) {
     
+    self.status = kObjectiveCPlugInStatusIdle;
+    
     // HACK: Ok, this is a hack but when instantiating this patch object form qtz
     // this is the only place to do it? 
     //if ([value isEqualToString: @"// Null"]) {
@@ -215,13 +249,24 @@
       value = [self.class defaultSource];
     }
     
-    NSLog(@"INFO: Setting source to value with length %i bytes", [(NSString *)value length]);
+    //NSLog(@"INFO: Setting source to value with length %i bytes", [(NSString *)value length]);
     
     self.onTheFly.sourceString = value;
     [self.onTheFly saveSourceToFile];
-    [onTheFly recompileIfNecessaryAndReloadDynamicLibrary];
+    [onTheFly reloadDynamicLibrary];
+
+    if ([self.onTheFly canExecute])
+      self.status = kObjectiveCPlugInStatusOk;
+    else
+      self.status = kObjectiveCPlugInStatusError;
+    
+//    [self.onTheFly loadSourceFromFile];
+//    [self setValue: [onTheFly sourceString] forKey: @"source"];
+    [self.onTheFly reloadDynamicLibrary];
+    
     //self.log = [onTheFly dumpLogAsStringAndClear];
     [self updatePorts];
+
 //    
 //    [self recompileIfNecessaryAndReloadDynamicLibrary];
   }
